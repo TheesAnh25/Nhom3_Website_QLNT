@@ -60,15 +60,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     $check->close();
 }
 
+
+// ...existing code...
 // Xử lý mua ngay
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['buy_now'])) {
     if (!$tentaikhoan) {
         echo "<script>alert('Bạn cần đăng nhập để sử dụng chức năng này!'); window.location='dangnhap.php';</script>";
         exit;
     }
+    $soluong = max(1, intval($_POST['quantity-input'] ?? 1));
+    $masp = $msp;
+    $tensp = $product['tensp'] ?? '';
+    $gia = $product['gia'] ?? 0;
+    $anh = $product['anh'] ?? '';
 
-    echo "<script>alert('Đặt hàng thành công!');</script>";
+    // Thêm vào bảng đặt hàng
+    $insert = $conn->prepare("INSERT INTO dathang (masp, tensp, gia, soluong, tentaikhoan, anh) VALUES (?, ?, ?, ?, ?, ?)");
+    $insert->bind_param("sssiss", $masp, $tensp, $gia, $soluong, $tentaikhoan, $anh);
+    $insert->execute();
+    $insert->close();
+
+    // Chuyển hướng sang trang quản lý đơn hàng
+    echo "<script>alert('Đặt hàng thành công!'); window.location='dathang.php';</script>";
+    exit;
 }
+// ...existing code...
 
 
 $conn->close();

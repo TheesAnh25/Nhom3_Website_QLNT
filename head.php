@@ -83,6 +83,9 @@ if (!$username) {
     $thongtin_onclick = "alert('Bạn cần đăng nhập để sử dụng chức năng này!'); return false;";
     $thongtin_text = "Thông Tin Tài Khoản";
 
+    $dathang_href = "dathang.php";
+    $dathang_text = "Đặt Hàng";
+
     $cuoi_href = "dangnhap.php";
     $cuoi_text = "Đăng Nhập";
     $cuoi_onclick = "";
@@ -103,6 +106,10 @@ if (!$username) {
     $giohang_onclick = "";
     $giohang_text = "Giỏ Hàng";
 
+    // Thêm hai dòng này để menu Đặt Hàng hiển thị cho user thường
+    $dathang_href = "dathang.php";
+    $dathang_text = "Đơn Hàng Của Bạn";
+
     $thongtin_href = "thongtintaikhoan.php";
     $thongtin_onclick = "";
     $thongtin_text = "Thông Tin Tài Khoản";
@@ -118,6 +125,9 @@ if (!$username) {
         <a href="trangchu.php" class="text-muted hover:text-muted-foreground" style="color: black;">Trang Chủ</a>
         <a href="sanpham.php" class="text-muted hover:text-muted-foreground" style="color: black;">Sản Phẩm</a>
         <a href="<?= $giohang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $giohang_onclick ? 'onclick="'.$giohang_onclick.'"' : '' ?>><?= $giohang_text ?></a>
+        <?php if (isset($dathang_href)): ?>
+            <a href="<?= $dathang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;"><?= $dathang_text ?></a>
+        <?php endif; ?>
         <a href="<?= $thongtin_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $thongtin_onclick ? 'onclick="'.$thongtin_onclick.'"' : '' ?>><?= $thongtin_text ?></a>
         <a href="<?= $cuoi_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $cuoi_onclick ? 'onclick="'.$cuoi_onclick.'"' : '' ?>><?= $cuoi_text ?></a>
     </nav>
