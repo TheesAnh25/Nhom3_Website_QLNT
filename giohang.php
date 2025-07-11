@@ -59,14 +59,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['thanh_toan'])) {
     }
 
     // Clear cart after checkout
-    $delete_query = "DELETE FROM giohang WHERE tentaikhoan = ?";
-    $delete_stmt = $conn->prepare($delete_query);
-    $delete_stmt->bind_param("s", $tentaikhoan);
-    $delete_stmt->execute();
-    $delete_stmt->close();
+// Clear cart after checkout
+$delete_query = "DELETE FROM giohang WHERE tentaikhoan = ?";
+$delete_stmt = $conn->prepare($delete_query);
+$delete_stmt->bind_param("s", $tentaikhoan);
+$delete_stmt->execute();
+$delete_stmt->close();
 
-    echo "<script>alert('Thanh toán thành công! Tổng tiền: " . number_format($tongtien, 0, ',', '.') . " VNĐ'); window.location='cart.php';</script>";
-    $stmt->close();
+echo "<script>alert('Thanh toán thành công! Tổng tiền: " . number_format($tongtien, 0, ',', '.') . " VNĐ'); window.location='giohang.php';</script>";
+$stmt->close();
 }
 
 // Load cart items
