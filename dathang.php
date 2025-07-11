@@ -24,14 +24,14 @@ $result = $stmt->get_result();
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #fefaf0; /* màu be nhạt */
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
         }
         h2 {
-            color: #333;
+            color: #7a5a00;
             margin-top: 20px;
             font-size: 2rem;
             text-align: center;
@@ -40,25 +40,25 @@ $result = $stmt->get_result();
             width: 90%;
             max-width: 1200px;
             border-collapse: collapse;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fffdf5;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             margin: 20px 0;
         }
         th, td {
             padding: 12px;
             text-align: center;
-            border: 1px solid #ddd;
+            border: 1px solid #e0d6c3; /* viền be nhạt */
         }
         th {
-            background-color: #007bff;
-            color: white;
+            background-color: #e5c07b; /* be vàng */
+            color: #4b3c00;
             font-weight: bold;
         }
         tr:nth-child(even) {
-            background-color: #f9f9f9;
+            background-color: #f9f5e8;
         }
         tr:hover {
-            background-color: #f1f1f1;
+            background-color: #f1ecdc;
         }
         img {
             max-width: 80px;
@@ -104,5 +104,11 @@ $result = $stmt->get_result();
         </tr>
         <?php endwhile; ?>
     </table>
+    <div style="text-align:center; margin-top: 20px;">
+        <a href="trangchu.php" style="display:inline-block; background:#e5c07b; color:#4b3c00; padding:10px 24px; border-radius:6px; text-decoration:none; font-weight:bold; transition:background 0.2s;"
+           onmouseover="this.style.background='#d1ae66'" onmouseout="this.style.background='#e5c07b'">
+            Quay lại Trang chủ
+        </a>
+    </div>
 </body>
 </html>

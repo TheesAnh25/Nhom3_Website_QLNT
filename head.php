@@ -123,7 +123,7 @@ if (!$username) {
     <div class="text-2xl font-bold">NỘI THẤT TOÀN ĐẠT</div>
     <nav class="space-x-4">
         <a href="trangchu.php" class="text-muted hover:text-muted-foreground" style="color: black;">Trang Chủ</a>
-        <a href="sanpham.php" class="text-muted hover:text-muted-foreground" style="color: black;">Sản Phẩm</a>
+        <!-- <a href="sanpham.php" class="text-muted hover:text-muted-foreground" style="color: black;">Sản Phẩm</a> -->
         <a href="<?= $giohang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $giohang_onclick ? 'onclick="'.$giohang_onclick.'"' : '' ?>><?= $giohang_text ?></a>
         <?php if (isset($dathang_href)): ?>
             <a href="<?= $dathang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;"><?= $dathang_text ?></a>
@@ -131,6 +131,91 @@ if (!$username) {
         <a href="<?= $thongtin_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $thongtin_onclick ? 'onclick="'.$thongtin_onclick.'"' : '' ?>><?= $thongtin_text ?></a>
         <a href="<?= $cuoi_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $cuoi_onclick ? 'onclick="'.$cuoi_onclick.'"' : '' ?>><?= $cuoi_text ?></a>
     </nav>
-    <input type="text" placeholder="Search..." class="border border-muted p-2 rounded" />
+  
+
+    <input type="text" id="search-box" placeholder="Search..." class="border border-muted p-2 rounded" autocomplete="off" style="width:220px; position:relative;" />
+    <div id="autocomplete-box" class="autocomplete-suggestions" style="display:none;"></div>
+</header>
+<style>
+.autocomplete-suggestions {
+    position: absolute;
+    top: 56px;
+    right: 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0 0 8px 8px;
+    width: 220px;
+    max-height: 220px;
+    overflow-y: auto;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.autocomplete-suggestion {
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f3f3f3;
+}
+.autocomplete-suggestion:last-child {
+    border-bottom: none;
+}
+.autocomplete-suggestion:hover, .autocomplete-suggestion.active {
+    background: #ffe4c4;
+    color: #7B4B37;
+}
+</style>
+<script>
+const suggestions = [
+    { name: "Bàn làm việc chân sắt", url: "chitietsp.php?id=sp01" },
+    { name: "Sofa đơn bọc nỉ", url: "chitietsp.php?id=sp02" },
+    { name: "Bàn IKEA 2m", url: "chitietsp.php?id=sp03" },
+    { name: "Bộ Bàn Ăn Scania", url: "chitietsp.php?id=sp04" },
+    { name: "Combo Giường Ngủ MOHO VLINE", url: "chitietsp.php?id=sp05" },
+    { name: "Combo Phòng Khách MOHO VLINE", url: "chitietsp.php?id=sp06" },
+    { name: "Tủ Quần Áo Gỗ Có Gương", url: "chitietsp.php?id=sp07" },
+    { name: "Combo Sofa Gỗ Cao Su Chữ L", url: "chitietsp.php?id=sp08" },
+    { name: "Ghế thư giãn", url: "chitietsp.php?id=sp09" },
+    { name: "Tủ giày thông minh", url: "chitietsp.php?id=sp10" }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('search-box');
+    const suggestionBox = document.getElementById('autocomplete-box');
+    if (!searchInput || !suggestionBox) return;
+
+    searchInput.parentNode.style.position = 'relative';
+    suggestionBox.style.left = searchInput.offsetLeft + 'px';
+
+    searchInput.addEventListener('input', function() {
+        const value = this.value.trim().toLowerCase();
+        suggestionBox.innerHTML = '';
+        if (!value) {
+            suggestionBox.style.display = 'none';
+            return;
+        }
+        const filtered = suggestions.filter(item => item.name.toLowerCase().includes(value));
+        if (filtered.length === 0) {
+            suggestionBox.style.display = 'none';
+            return;
+        }
+        filtered.forEach(item => {
+            const div = document.createElement('div');
+            div.className = 'autocomplete-suggestion';
+            div.textContent = item.name;
+            div.onclick = function() {
+                window.location.href = item.url;
+            };
+            suggestionBox.appendChild(div);
+        });
+        suggestionBox.style.display = 'block';
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!suggestionBox.contains(e.target) && e.target !== searchInput) {
+            suggestionBox.style.display = 'none';
+        }
+    });
+});
+</script>
+
 </header>
 </head>

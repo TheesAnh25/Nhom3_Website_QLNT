@@ -30,8 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $conn->prepare("INSERT INTO taikhoan (taikhoan, matkhau, diachi, sdt) VALUES (?, ?, ?, ?)");
             $stmt->bind_param("ssss", $tentaikhoan, $hashed_password, $diachi, $sdt);
             if ($stmt->execute()) {
-                // Nếu thêm thành công, hiển thị thông báo và chuyển hướng sang trang đăng nhập
-                echo "<script>alert('Đăng ký thành công!'); window.location='dangnhap.php';</script>";
+                // Lưu thông tin vào session
+                session_start();
+                $_SESSION['username'] = $tentaikhoan;
+                $_SESSION['fullname'] = ''; // Nếu có trường họ tên thì lấy từ form
+                $_SESSION['email'] = '';    // Nếu có trường email thì lấy từ form
+                $_SESSION['phone'] = $sdt;
+                $_SESSION['address'] = $diachi;
+                // Chuyển hướng sang trang thông tin tài khoản
+                header("Location: thongtintaikhoan.php");
                 exit;
             } else {
                 // Nếu thêm thất bại, thông báo lỗi
@@ -47,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -145,6 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     </style>
 </head>
+
 <body>
     <div class="flex flex-col md:flex-row h-screen">
         <!-- Cột bên trái: Ảnh nền -->
@@ -186,4 +195,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 </body>
+
 </html>
