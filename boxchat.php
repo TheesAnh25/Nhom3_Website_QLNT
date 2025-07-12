@@ -249,8 +249,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clear'])) {
         <div class="chat-header">
             <img src="https://i.pinimg.com/236x/2f/08/ab/2f08ab311cb92ed2cfafc691b12a8ce2.jpg" alt="Avatar">
             <div class="info">
-                <div class="status">chat whit</div>
-                <div class="name">Tdth</div>
+                <div class="status">Chat AI</div>
+                <div class="name">FurniBot</div>
             </div>
             <div class="icons">
                 <!-- Dropdown menu dấu 3 chấm -->

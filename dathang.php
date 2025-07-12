@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 if (!isset($_SESSION['username'])) {
@@ -90,6 +91,7 @@ $result = $stmt->get_result();
             <th>Tên SP</th>
             <th>Giá</th>
             <th>Số lượng</th>
+            <th>Tên tài khoản</th>
             <th>Ảnh</th>
             <th>Ngày đặt</th>
         </tr>
@@ -99,6 +101,7 @@ $result = $stmt->get_result();
             <td><?php echo htmlspecialchars($row['tensp']); ?></td>
             <td><?php echo number_format($row['gia'], 0, ',', '.'); ?> VNĐ</td>
             <td><?php echo $row['soluong']; ?></td>
+            <td><?php echo htmlspecialchars($row['tentaikhoan']); ?></td>
             <td><img src="<?php echo htmlspecialchars($row['anh']); ?>" width="80"></td>
             <td><?php echo $row['ngaydat']; ?></td>
         </tr>
