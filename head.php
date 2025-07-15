@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -119,23 +120,28 @@ if (!$username) {
     $cuoi_onclick = "";
 }
 ?>
-<header class="flex justify-between items-center p-4 bg-secondary" style="background-color: #FDF5E6">
-    <div class="text-2xl font-bold">NỘI THẤT TOÀN</div>
-    <nav class="space-x-4">
-        <a href="trangchu.php" class="text-muted hover:text-muted-foreground" style="color: black;">Trang Chủ</a>
-        <!-- <a href="sanpham.php" class="text-muted hover:text-muted-foreground" style="color: black;">Sản Phẩm</a> -->
-        <a href="<?= $giohang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $giohang_onclick ? 'onclick="'.$giohang_onclick.'"' : '' ?>><?= $giohang_text ?></a>
-        <?php if (isset($dathang_href)): ?>
-            <a href="<?= $dathang_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;"><?= $dathang_text ?></a>
-        <?php endif; ?>
-        <a href="<?= $thongtin_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $thongtin_onclick ? 'onclick="'.$thongtin_onclick.'"' : '' ?>><?= $thongtin_text ?></a>
-        <a href="<?= $cuoi_href ?>" class="text-muted hover:text-muted-foreground" style="color: black;" <?= $cuoi_onclick ? 'onclick="'.$cuoi_onclick.'"' : '' ?>><?= $cuoi_text ?></a>
-    </nav>
-  
+<header class="bg-[#fdf5e6] shadow-md px-6 py-4 flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+    <div class="text-2xl font-extrabold text-[#8b4513] tracking-wide">
+        NỘI THẤT TOÀN
+    </div>
 
-    <input type="text" id="search-box" placeholder="Search..." class="border border-muted p-2 rounded" autocomplete="off" style="width:220px; position:relative;" />
-    <div id="autocomplete-box" class="autocomplete-suggestions" style="display:none;"></div>
+    <nav class="flex flex-wrap gap-4 justify-center text-sm font-semibold">
+        <a href="trangchu.php" class="text-[#5c4033] hover:text-[#a67c68] transition-colors">Trang Chủ</a>
+        <a href="<?= $giohang_href ?>" <?= $giohang_onclick ? 'onclick="'.$giohang_onclick.'"' : '' ?> class="text-[#5c4033] hover:text-[#a67c68] transition-colors"><?= $giohang_text ?></a>
+        <?php if (isset($dathang_href)): ?>
+            <a href="<?= $dathang_href ?>" class="text-[#5c4033] hover:text-[#a67c68] transition-colors"><?= $dathang_text ?></a>
+        <?php endif; ?>
+        <a href="<?= $thongtin_href ?>" <?= $thongtin_onclick ? 'onclick="'.$thongtin_onclick.'"' : '' ?> class="text-[#5c4033] hover:text-[#a67c68] transition-colors"><?= $thongtin_text ?></a>
+        <a href="<?= $cuoi_href ?>" <?= $cuoi_onclick ? 'onclick="'.$cuoi_onclick.'"' : '' ?> class="text-[#5c4033] hover:text-[#a67c68] transition-colors"><?= $cuoi_text ?></a>
+    </nav>
+
+    <div class="relative">
+        <input type="text" id="search-box" placeholder="Search..." autocomplete="off"
+            class="border border-[#d9b99b] p-2 pl-4 rounded-full focus:outline-none focus:ring-2 focus:ring-[#a67c68] shadow-sm w-56" />
+        <div id="autocomplete-box" class="autocomplete-suggestions" style="display:none;"></div>
+    </div>
 </header>
+
 <style>
 .autocomplete-suggestions {
     position: absolute;
