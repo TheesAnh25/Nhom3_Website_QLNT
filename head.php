@@ -120,7 +120,7 @@ if (!$username) {
 }
 ?>
 <header class="flex justify-between items-center p-4 bg-secondary" style="background-color: #FDF5E6">
-    <div class="text-2xl font-bold">NỘI THẤT TOÀN ĐẠT</div>
+    <div class="text-2xl font-bold">NỘI THẤT TOÀN </div>
     <nav class="space-x-4">
         <a href="trangchu.php" class="text-muted hover:text-muted-foreground" style="color: black;">Trang Chủ</a>
         <!-- <a href="sanpham.php" class="text-muted hover:text-muted-foreground" style="color: black;">Sản Phẩm</a> -->
